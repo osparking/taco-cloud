@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>타코 주문</title>
+<link rel="stylesheet" th:href="@{/styles.css}" />
+</head>
+<body>
+	<form method="POST" th:action="@{/orders}" th:object="${tacoOrder}">
+		<h1>맛있는 타코를 주문한다</h1>
+
+		<img th:src="@{/images/TacoCloud.png}" />
+
+		<h3>주문되는 타코들:</h3>
+		<a th:href="@{/design}" id="another">타코 추가하기</a>
+		<br />
+		<ul>
+			<li th:each="taco : ${tacoOrder.tacos}"><span
+					th:text="${taco.name}">타코 이름</span></li>
+		</ul>
+	</form>
+</body>
+</html>

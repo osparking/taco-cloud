@@ -37,6 +37,21 @@
     <input type="text" th:field="*{deliDetailAddr}"/>
     <br/>
     
+    <h3>여기 대금 지불 방법입니다.</h3>
+    <label for="ccNumber">신용카드 번호 #: </label>
+    <input type="text" th:field="*{ccNumber}"/>
+    <br/>
+
+    <label for="ccExprYM">만기년월: </label>
+    <input type="text" th:field="*{ccExprYM}"/>
+    <br/>
+
+    <label for="ccCvv">CVV: </label>
+    <input type="text" th:field="*{ccCvv}"/>
+    <br/>
+
+    <input type="submit" value="주문 확인"/>    
+
 	</form>
 </body>
 </html>

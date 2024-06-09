@@ -19,6 +19,24 @@
 			<li th:each="taco : ${tacoOrder.tacos}"><span
 					th:text="${taco.name}">타코 이름</span></li>
 		</ul>
+		
+    <h3>타코 배달 주소입니다.</h3>
+    <label for="custName">주문자: </label>
+    <input type="text" th:field="*{custName}"/>
+    <br/>
+
+    <label for="deliZip">우편번호: </label>
+    <input type="text" th:field="*{deliZip}"/>
+    <br/>
+    
+    <label for="deliRoadAddr">도로 주소: </label>
+    <input type="text" th:field="*{deliRoadAddr}"/>
+    <br/>
+
+    <label for="deliDetailAddr">상세 주소: </label>
+    <input type="text" th:field="*{deliDetailAddr}"/>
+    <br/>
+    
 	</form>
 </body>
 </html>

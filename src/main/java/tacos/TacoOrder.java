@@ -17,7 +17,9 @@ public class TacoOrder {
   
   private List<Taco> tacos = new ArrayList<>();
   
+  @NotBlank(message="우편번호는 필수 입력 항목입니다.")
   private String deliZip; // 우편번호
+  
   @NotBlank(message="도로 주소는 필수 입력 항목입니다.")
   private String deliRoadAddr; // 도로 주소
 

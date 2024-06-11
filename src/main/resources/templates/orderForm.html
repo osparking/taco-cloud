@@ -23,18 +23,30 @@
     <h3>타코 배달 주소입니다.</h3>
     <label for="custName">주문자: </label>
     <input type="text" th:field="*{custName}"/>
+    <span class ="validationError"
+      th:if="${#fields.hasErrors('custName')}"
+      th:errors="*{custName}">주문자 이름 오류</span>
     <br/>
 
     <label for="deliZip">우편번호: </label>
     <input type="text" th:field="*{deliZip}"/>
+    <span class ="validationError"
+      th:if="${#fields.hasErrors('deliZip')}"
+      th:errors="*{deliZip}">우편번호 오류</span>
     <br/>
     
     <label for="deliRoadAddr">도로 주소: </label>
     <input type="text" th:field="*{deliRoadAddr}"/>
+    <span class ="validationError"
+      th:if="${#fields.hasErrors('deliRoadAddr')}"
+      th:errors="*{deliRoadAddr}">신용카드 번호 오류</span>
     <br/>
 
     <label for="deliDetailAddr">상세 주소: </label>
     <input type="text" th:field="*{deliDetailAddr}"/>
+    <span class ="validationError"
+      th:if="${#fields.hasErrors('deliDetailAddr')}"
+      th:errors="*{deliDetailAddr}">상세 주소 오류</span>
     <br/>
     
     <h3>여기 대금 지불 방법입니다.</h3>
@@ -47,10 +59,16 @@
 
     <label for="ccExprYM">만기년월: </label>
     <input type="text" th:field="*{ccExprYM}"/>
+    <span class ="validationError"
+      th:if="${#fields.hasErrors('ccExprYM')}"
+      th:errors="*{ccExprYM}">신용카드 번호 오류</span>
     <br/>
 
     <label for="ccCvv">CVV: </label>
     <input type="text" th:field="*{ccCvv}"/>
+    <span class ="validationError"
+      th:if="${#fields.hasErrors('ccCvv')}"
+      th:errors="*{ccCvv}">CVV 값 형식 오류</span>
     <br/>
 
     <input type="submit" value="주문 확인"/>    

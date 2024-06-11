@@ -40,6 +40,9 @@
     <h3>여기 대금 지불 방법입니다.</h3>
     <label for="ccNumber">신용카드 번호 #: </label>
     <input type="text" th:field="*{ccNumber}"/>
+    <span class ="validationError"
+      th:if="${#fields.hasErrors('ccNumber')}"
+      th:errors="*{ccNumber}">신용카드 번호 오류</span>
     <br/>
 
     <label for="ccExprYM">만기년월: </label>

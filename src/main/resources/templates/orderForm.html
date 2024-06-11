@@ -20,6 +20,12 @@
 					th:text="${taco.name}">타코 이름</span></li>
 		</ul>
 		
+    <div th:if="${#fields.hasErrors()}">
+      <span class="validationError">
+      아래 표시된 오류를 수정한 뒤 다시 제출하세요.
+      </span>
+    </div>
+		
     <h3>타코 배달 주소입니다.</h3>
     <label for="custName">주문자: </label>
     <input type="text" th:field="*{custName}"/>

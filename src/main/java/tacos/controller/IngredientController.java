@@ -2,6 +2,7 @@ package tacos.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,13 +17,14 @@ public class IngredientController {
   @Autowired
   IngredientRepository repository;
 
-  @GetMapping("/flto")
-  public void logFlto() {
-    var optIngre = repository.findById("FLTO");
+  @GetMapping("/ingredient/{id}")
+  public void logFlto(@PathVariable String id) {
+    var idUpper = id.toUpperCase();
+    var optIngre = repository.findById(idUpper);
     if (optIngre.isPresent()) {
       log.info(optIngre.toString());
     } else {
-      log.error("FLTO 재료가 없습니다");
+      log.error(idUpper + ": 재료가 없습니다");
     }
   }
 }

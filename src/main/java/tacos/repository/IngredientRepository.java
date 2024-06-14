@@ -1,48 +1,36 @@
 package tacos.repository;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Optional;
 
-import javax.sql.DataSource;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import lombok.extern.slf4j.Slf4j;
 import tacos.Ingredient;
 import tacos.Ingredient.Type;
 
-@Slf4j
 @Repository
 public class IngredientRepository {
 
   @Autowired
-  DataSource dataSource;
+  private JdbcTemplate jdbcTemplate;
 
   public Optional<Ingredient> findById(String id) {
+    List<Ingredient> results = jdbcTemplate.query(
+        "select id, name, type from Ingredient where id=?",
+        this::mapRowToIngredient,
+        id);
+    return results.size() == 0 ? Optional.empty() : Optional.of(results.get(0));
+  }
 
-    String findIngID = "select id, name, type from Ingredient where id=?";
-
-    try (Connection connection = dataSource.getConnection();
-        PreparedStatement statement = connection
-            .prepareStatement(findIngID);) {
-
-      statement.setString(1, id.toUpperCase());
-      try (ResultSet resultSet = statement.executeQuery()) {
-        if (resultSet.next()) {
-          return Optional.of(new Ingredient(resultSet.getString("id"),
-              resultSet.getString("name"),
-              Type.values()[resultSet.getInt("type")]));
-        }
-      } catch (Exception e) {
-        log.error(e.getMessage());
-      }
-    } catch (SQLException e) {
-      log.error(e.getMessage());
-    }
-    return Optional.empty();
+  private Ingredient mapRowToIngredient(ResultSet row, int rowNum)
+      throws SQLException {
+    return new Ingredient(
+        row.getString("id"),
+        row.getString("name"),
+        Type.values()[row.getInt("type")]);
   }
 }

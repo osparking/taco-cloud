@@ -1,5 +1,6 @@
 package tacos;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +13,11 @@ import lombok.Data;
 
 @Data
 public class TacoOrder {
+
+  private Long id;
+
+  private LocalDateTime placedAt;
+
   @NotBlank(message="고객 성명은 필수 입력 항목입니다.")
   private String custName; // 고객명
   

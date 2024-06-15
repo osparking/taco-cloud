@@ -1,5 +1,6 @@
 package tacos;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import jakarta.validation.constraints.NotNull;
@@ -8,6 +9,11 @@ import lombok.Data;
 
 @Data
 public class Taco {
+
+  private Long id;
+
+  private LocalDateTime createdAt = LocalDateTime.now();
+
   @NotNull
   @Size(min = 2, message = "이름은 최소 2 문자라야 됩니다.")
   private String name;

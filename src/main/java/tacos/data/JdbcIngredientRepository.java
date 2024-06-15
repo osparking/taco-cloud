@@ -11,6 +11,12 @@ import tacos.Ingredient;
 public class JdbcIngredientRepository implements IngredientRepository {
 
   private JdbcTemplate jdbcTemplate;
+  
+  public JdbcIngredientRepository(JdbcTemplate jdbcTemplate) {
+    super();
+    this.jdbcTemplate = jdbcTemplate;
+  }
+  
 
   @Override
   public Iterable<Ingredient> findAll() {

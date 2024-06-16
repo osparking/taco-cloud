@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import tacos.Ingredient;
@@ -40,7 +41,16 @@ public class JdbcIngredientRepository implements IngredientRepository {
   public Optional<Ingredient> findById(String id) {
     List<Ingredient> results = jdbcTemplate.query(
         "select id, name, type from Ingredient where id=?",
-        this::mapRowToIngredient,
+        new RowMapper<Ingredient>() {
+          @Override
+          public Ingredient mapRow(ResultSet rs, int rowNum)
+              throws SQLException {
+            return new Ingredient(
+                rs.getString("id"),
+                rs.getString("name"),
+                Type.values()[rs.getInt("type")]);
+          }
+        },
         id);
     return results.size() == 0 ? Optional.empty() : Optional.of(results.get(0));
   }

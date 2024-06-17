@@ -9,5 +9,5 @@ public interface IngredientRepository {
 
   Optional<Ingredient> findById(String id);
 
-  Ingredient save(Ingredient ingredient);
+  Number save(Ingredient ingredient);
 }

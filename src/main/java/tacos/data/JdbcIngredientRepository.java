@@ -52,9 +52,12 @@ public class JdbcIngredientRepository implements IngredientRepository {
   }
 
   @Override
-  public Ingredient save(Ingredient ingredient) {
-    // TODO Auto-generated method stub
-    return null;
-  }
+  public Number save(Ingredient ingredient) {
+    final Map<String, Object> parameters = new HashMap<>();
+    parameters.put("id", ingredient.getId().toUpperCase());
+    parameters.put("name", ingredient.getName());
+    parameters.put("type", ingredient.getType().ordinal());
 
+    return insertIngredient.executeAndReturnKey(parameters);
+  }
 }

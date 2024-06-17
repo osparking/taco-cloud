@@ -40,7 +40,7 @@ public class DesignTacoController {
     return "redirect:/orders/current";
   }
 
-  private Iterable<Ingredient> filterByType(
+  private Iterable<Ingredient> ingredientByType(
       List<Ingredient> ingredients, Type type) {
     return ingredients
         .stream()
@@ -65,7 +65,7 @@ public class DesignTacoController {
     Type[] types = Ingredient.Type.values();
     for (Type type : types) {
       model.addAttribute(type.toString().toLowerCase(),
-          filterByType(ingredients, type));
+          ingredientByType(ingredients, type));
     }
   }
 

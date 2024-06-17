@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title>재료 추가</title>
+  <link rel="stylesheet" th:href="@{/styles.css}" />
+</head>
+
+<body>
+  <form method="POST" th:object="${ingredient}">
+    <h1>새 재료 생성</h1>
+
+    <img th:src="@{/images/TacoCloud.png}" />
+
+    <h3>새 재료 정보입니다.</h3>
+    <label for="id">아이디: </label>
+    <input type="text" th:field="*{id}" />
+    <br />
+
+    <label for="name">이름: </label>
+    <input type="text" th:field="*{name}" />
+    <br />
+
+    <label for="type">유형: </label>
+    <select th:field="*{type}">
+      <option th:each="ingredient: ${T(tacos.Ingredient.Type).values()}" 
+        th:value="${ingredient.name()}"
+        th:text="${ingredient.desc}">(enum 항목)
+      </option>
+    </select>
+
+    <br />
+    <input type="submit" value="재료 저장" />
+
+  </form>
+</body>
+
+</html>

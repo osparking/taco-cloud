@@ -1,7 +1,6 @@
 package tacos.web;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,27 +45,14 @@ public class DesignTacoController {
     return "redirect:/orders/current";
   }
 
-  private Iterable<Ingredient> ingredientByType(
-      Iterable<Ingredient> ingredients, Type type) {
-    var ings = ingredients.iterator();
-    List<Ingredient> ingOfType = new ArrayList<>();
-    while (ings.hasNext()) {
-      var x = ings.next();
-      if (x.getType().equals(type)) {
-        ingOfType.add(x);
-      }
-    }
-    return ingOfType;
-  }
-
   @ModelAttribute
   public void addIngredientsToModel(Model model) {
-    Iterable<Ingredient> ingredients = ingredientRepo.findAll();
-
-    Type[] types = Ingredient.Type.values();
-    for (Type type : types) {
+    for (Type type : Ingredient.Type.values()) {
       model.addAttribute(type.toString().toLowerCase(),
-          ingredientByType(ingredients, type));
+          ingredientRepo.findAll()
+              .stream()
+              .filter(x -> x.getType().equals(type))
+              .collect(Collectors.toList()));
     }
   }
 

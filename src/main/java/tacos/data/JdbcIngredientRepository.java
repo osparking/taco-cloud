@@ -2,10 +2,13 @@ package tacos.data;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import tacos.Ingredient;
@@ -15,10 +18,13 @@ import tacos.Ingredient.Type;
 public class JdbcIngredientRepository implements IngredientRepository {
 
   private JdbcTemplate jdbcTemplate;
+  private SimpleJdbcInsert insertIngredient;
 
   public JdbcIngredientRepository(JdbcTemplate jdbcTemplate) {
     super();
     this.jdbcTemplate = jdbcTemplate;
+    insertIngredient = new SimpleJdbcInsert(jdbcTemplate)
+        .withTableName("ingredient").usingGeneratedKeyColumns("sn");
   }
 
   private Ingredient mapRowToIngredient(ResultSet row, int rowNum)

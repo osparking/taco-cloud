@@ -13,6 +13,15 @@ public class Ingredient {
   private Type type;
   
   public enum Type {
-    WRAP, PROTEIN, VEGGIES, CHEESE, SAUCE
+    WRAP("빵"), PROTEIN("단백질"), VEGGIES("야채"), CHEESE("치즈"), SAUCE("소스");
+
+    String desc;
+    Type(String string) {
+      this.desc = string;
+    }
+
+    public String getDesc() {
+      return desc;
+    }
   }
 }

@@ -5,11 +5,13 @@ import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.asm.Type;
 import org.springframework.jdbc.core.JdbcOperations;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.PreparedStatementCreatorFactory;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 
+import tacos.Ingredient;
 import tacos.Taco;
 import tacos.TacoOrder;
 
@@ -60,10 +62,36 @@ public class JdbcOrderRepository implements OrderRepository {
       saveTaco(orderId, i++, taco);
     }
 
-    return order;
+    return order; // 실인자 대비, 주문시각 및 id 값이 채워짐.
   }
 
-  private void saveTaco(long orderId, int i, Taco taco) {
+  private long saveTaco(long orderId, int orderKey, Taco taco) {
+    taco.setCreatedAt(LocalDateTime.now());
+    PreparedStatementCreatorFactory pscf = new PreparedStatementCreatorFactory(
+        "insert into Taco(name, order_id, order_key, created_at)"
+            + " values (?, ?, ?, ?)",
+        Types.VARCHAR, Type.LONG, Type.LONG, Types.TIMESTAMP);
+    pscf.setReturnGeneratedKeys(true);
+
+    PreparedStatementCreator psc = pscf.newPreparedStatementCreator(
+        Arrays.asList(
+            taco.getName(),
+            orderId,
+            orderKey,
+            taco.getCreatedAt()));
+
+    GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
+    jdbcOperations.update(psc, keyHolder);
+    long tacoId = keyHolder.getKey().longValue();
+    taco.setId(tacoId);
+
+    saveIngredientRefs(tacoId, taco.getIngredients());
+
+    return tacoId;
+  }
+
+  private void saveIngredientRefs(long tacoId, List<Ingredient> ingredients) {
     // TODO Auto-generated method stub
+
   }
 }

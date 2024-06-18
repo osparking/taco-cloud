@@ -91,7 +91,13 @@ public class JdbcOrderRepository implements OrderRepository {
   }
 
   private void saveIngredientRefs(long tacoId, List<Ingredient> ingredients) {
-    // TODO Auto-generated method stub
+    int key = 0;
 
+    for (Ingredient ingredient : ingredients) {
+      jdbcOperations.update(
+          "insert into Ingredient_Ref (ing_sn, taco_id, taco_key) "
+              + "values (?, ?, ?)",
+          ingredient.getSn(), tacoId, key++);
+    }
   }
 }

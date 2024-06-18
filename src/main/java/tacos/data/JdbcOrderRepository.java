@@ -10,11 +10,13 @@ import org.springframework.jdbc.core.JdbcOperations;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.PreparedStatementCreatorFactory;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.stereotype.Repository;
 
 import tacos.Ingredient;
 import tacos.Taco;
 import tacos.TacoOrder;
 
+@Repository
 public class JdbcOrderRepository implements OrderRepository {
 
   private JdbcOperations jdbcOperations;

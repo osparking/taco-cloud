@@ -30,6 +30,7 @@ public class JdbcIngredientRepository implements IngredientRepository {
   private Ingredient mapRowToIngredient(ResultSet row, int rowNum)
       throws SQLException {
     return new Ingredient(
+        row.getShort("sn"),
         row.getString("id"),
         row.getString("name"),
         Type.values()[row.getInt("type")]);
@@ -38,14 +39,14 @@ public class JdbcIngredientRepository implements IngredientRepository {
   @Override
   public List<Ingredient> findAll() {
     return jdbcTemplate.query(
-        "select id, name, type from Ingredient",
+        "select * from Ingredient",
         this::mapRowToIngredient);
   }
 
   @Override
   public Optional<Ingredient> findById(String id) {
     List<Ingredient> results = jdbcTemplate.query(
-        "select id, name, type from Ingredient where id=?",
+        "select * from Ingredient where id=?",
         this::mapRowToIngredient,
         id);
     return results.size() == 0 ? Optional.empty() : Optional.of(results.get(0));

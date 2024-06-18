@@ -9,14 +9,19 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import tacos.TacoOrder;
+import tacos.data.OrderRepository;
 
 @Slf4j
 @Controller
 @RequestMapping("/orders")
 @SessionAttributes("tacoOrder")
+@AllArgsConstructor
 public class OrderController {
+
+  private OrderRepository orderRepository;
 
   @GetMapping("/current")
   public String processOrder() {
@@ -31,6 +36,7 @@ public class OrderController {
       return "orderForm";
     }
 
+    orderRepository.save(order);
     log.info("타코 주문 : {}", order);
     sessionStatus.setComplete();
 

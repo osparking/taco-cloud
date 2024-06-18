@@ -63,11 +63,11 @@
       th:errors="*{ccNumber}">신용카드 번호 오류</span>
     <br/>
 
-    <label for="ccExprYM">만기년월: </label>
-    <input type="text" th:field="*{ccExprYM}"/>
+    <label for="ccExprY_M">만기년월: </label>
+    <input type="text" th:field="*{ccExprY_M}"/>
     <span class ="validationError"
-      th:if="${#fields.hasErrors('ccExprYM')}"
-      th:errors="*{ccExprYM}">신용카드 번호 오류</span>
+      th:if="${#fields.hasErrors('ccExprY_M')}"
+      th:errors="*{ccExprY_M}">신용카드 번호 오류</span>
     <br/>
 
     <label for="ccCvv">CVV: </label>

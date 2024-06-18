@@ -43,7 +43,7 @@ public class TacoOrder {
   
   @Pattern(regexp="^(0[1-9]|1[0-2])([\\/])([2-9][0-9])$",
       message="만기년월 형식은 '월월/년년'입니다.")  
-  private String ccExprYM; // 만기년월
+  private String ccExprY_M; // 만기년월
 
   public void addTaco(Taco taco) {
     tacos.add(taco);

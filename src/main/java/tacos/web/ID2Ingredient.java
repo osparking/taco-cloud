@@ -7,7 +7,7 @@ import tacos.Ingredient;
 import tacos.data.IngredientRepository;
 
 @Component
-public class ID2Ingredient implements Converter<String, Ingredient> {
+public class ID2Ingredient implements Converter<Short, Ingredient> {
   private final IngredientRepository ingredientRepo;
 
   public ID2Ingredient(IngredientRepository repository) {
@@ -15,7 +15,7 @@ public class ID2Ingredient implements Converter<String, Ingredient> {
   }
 
   @Override
-  public Ingredient convert(String id) {
+  public Ingredient convert(Short id) {
     return ingredientRepo.findById(id).orElse(null);
   }
 }

@@ -1,6 +1,7 @@
 package tacos.web;
 
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -49,8 +50,7 @@ public class DesignTacoController {
   public void addIngredientsToModel(Model model) {
     for (Type type : Ingredient.Type.values()) {
       model.addAttribute(type.toString().toLowerCase(),
-          ingredientRepo.findAll()
-              .stream()
+          StreamSupport.stream(ingredientRepo.findAll().spliterator(), false)
               .filter(x -> x.getType().equals(type))
               .collect(Collectors.toList()));
     }

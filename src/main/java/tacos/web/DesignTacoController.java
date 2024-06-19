@@ -58,12 +58,24 @@ public class DesignTacoController {
 
   @ModelAttribute(name = "tacoOrder")
   public TacoOrder order() {
-    return new TacoOrder();
+    var order = new TacoOrder();
+
+    order.setCustName("김만복");
+    order.setDeliZip("15230");
+    order.setDeliRoadAddr("경기도 군포시 당정1로 27");
+    order.setDeliDetailAddr("1001동 101호");
+    order.setCcNumber("4111111111111111");
+    order.setCcExprY_M("12/26");
+    order.setCcCvv("123");
+
+    return order;
   }
 
   @ModelAttribute(name = "taco")
   public Taco taco() {
-    return new Taco();
+    var taco = new Taco();
+    taco.setName("최애 타코");
+    return taco;
   }
 
   @GetMapping

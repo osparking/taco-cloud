@@ -1,3 +1,9 @@
+delete from Ingredient_Ref;
+delete from Taco;
+delete from Taco_Order;
+
+delete from Ingredient;
+
 INSERT INTO INGREDIENT(ID, NAME, TYPE) VALUES ('FLTO', '밀가루 토르티야', 0);
 INSERT INTO INGREDIENT(ID, NAME, TYPE) VALUES ('COTO', '옥수수 토르티야', 0);   
 INSERT INTO INGREDIENT(ID, NAME, TYPE) VALUES ('GRBF', '다진 소고기', 1);  

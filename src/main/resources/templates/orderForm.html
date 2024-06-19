@@ -42,7 +42,7 @@
     <br/>
     
     <label for="deliRoadAddr">도로 주소: </label>
-    <input type="text" th:field="*{deliRoadAddr}"/>
+    <input type="text" th:field="*{deliRoadAddr}" size="35"/>
     <span class ="validationError"
       th:if="${#fields.hasErrors('deliRoadAddr')}"
       th:errors="*{deliRoadAddr}">신용카드 번호 오류</span>
@@ -55,7 +55,7 @@
       th:errors="*{deliDetailAddr}">상세 주소 오류</span>
     <br/>
     
-    <h3>여기 대금 지불 방법입니다.</h3>
+    <h3>대금 지불 방법</h3>
     <label for="ccNumber">신용카드 번호 #: </label>
     <input type="text" th:field="*{ccNumber}"/>
     <span class ="validationError"

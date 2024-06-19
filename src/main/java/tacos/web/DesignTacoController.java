@@ -51,7 +51,7 @@ public class DesignTacoController {
     for (Type type : Ingredient.Type.values()) {
       model.addAttribute(type.toString().toLowerCase(),
           StreamSupport.stream(ingredientRepo.findAll().spliterator(), false)
-              .filter(x -> x.getType().equals(type))
+              .filter(x -> x.getTypeOrd().equals((short) type.ordinal()))
               .collect(Collectors.toList()));
     }
   }

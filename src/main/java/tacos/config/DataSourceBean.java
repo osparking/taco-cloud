@@ -3,7 +3,7 @@ package tacos.config;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -32,7 +32,7 @@ public class DataSourceBean {
   }
 
   @Bean
-  CommandLineRunner ingredientLoader(IngredientRepository repo) {
+  ApplicationRunner ingredientLoader(IngredientRepository repo) {
     return (args) -> {
       repo.save(new Ingredient("FLTO", "밀가루 토르티야", (short) 0));
       repo.save(new Ingredient("COTO", "옥수수 토르티야", (short) 0));

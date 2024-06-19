@@ -1,5 +1,7 @@
 package tacos.web;
 
+import java.time.LocalDateTime;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,6 +38,7 @@ public class OrderController {
       return "orderForm";
     }
 
+    order.setPlacedAt(LocalDateTime.now());
     orderRepository.save(order);
     log.info("타코 주문 : {}", order);
     sessionStatus.setComplete();

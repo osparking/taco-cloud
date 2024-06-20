@@ -15,7 +15,7 @@ public class ID2Ingredient implements Converter<String, Ingredient> {
   }
 
   @Override
-  public Ingredient convert(String id) {
-    return ingredientRepo.findById(id).orElse(null);
+  public Ingredient convert(String sn) {
+    return ingredientRepo.findById(Short.valueOf(sn)).orElse(null);
   }
 }

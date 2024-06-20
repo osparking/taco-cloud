@@ -31,7 +31,7 @@ create table if not exists Taco (
 );
  
 create table if not exists Ingredient_Ref (
-  ing_sn varchar(4) not null,
+  ingredient_s_n smallint not null,
   taco_id bigint not null,
   taco_key bigint not null
 );
@@ -39,4 +39,4 @@ create table if not exists Ingredient_Ref (
 alter table Taco
     add foreign key (taco_order) references Taco_Order(id);
 alter table Ingredient_Ref
-    add foreign key (ing_sn) references Ingredient(sn);
+    add foreign key (ingredient_s_n) references Ingredient(sn);

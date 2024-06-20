@@ -6,21 +6,31 @@ import java.util.List;
 
 import org.hibernate.validator.constraints.CreditCardNumber;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
 @Data
+@Entity
 public class TacoOrder {
 
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
-  private LocalDateTime placedAt;
+  private LocalDateTime placedAt = LocalDateTime.now();
 
   @NotBlank(message="고객 성명은 필수 입력 항목입니다.")
   private String custName; // 고객명
   
+  @OneToMany(cascade = CascadeType.ALL)
   private List<Taco> tacos = new ArrayList<>();
   
   @NotBlank(message="우편번호는 필수 입력 항목입니다.")

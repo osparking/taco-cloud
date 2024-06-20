@@ -61,7 +61,7 @@ public class DesignTacoController {
     }
 
     taco.getIngredientSNs().forEach(
-        sn -> taco.getIngredientRefs().add(new IngredientRef(sn.shortValue())));
+        sn -> taco.getIngredientRefs().add(new IngredientRef(sn)));
     tacoOrder.addTaco(taco);
     log.info("주문 처리 대상: {}", taco);
 

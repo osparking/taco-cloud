@@ -7,6 +7,6 @@ import lombok.Data;
 @AllArgsConstructor
 public class IngredientRef {
 
-  private final short ingredientSN; // 재료 일련번호
+  private final Short ingredientSN; // 재료 일련번호
 
 }

@@ -1,9 +1,11 @@
 package tacos;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -23,5 +25,9 @@ public class Taco {
 
   @NotNull
   @Size(min = 1, message = "재료를 한 가지 이상 선택하세요.")
-  private List<IngredientRef> ingredientRefs;
+  @Transient
+  private List<Integer> ingredientSNs = new ArrayList<>();
+
+  private List<IngredientRef> ingredientRefs = new ArrayList<>();
+
 }

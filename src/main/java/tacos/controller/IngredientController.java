@@ -17,14 +17,13 @@ public class IngredientController {
   @Autowired
   IngredientRepository repository;
 
-  @GetMapping("/ingredient/{id}")
-  public void logFlto(@PathVariable String id) {
-    var idUpper = id.toUpperCase();
-    var optIngre = repository.findById(idUpper);
+  @GetMapping("/ingredient/{sn}")
+  public void logFlto(@PathVariable String sn) {
+    var optIngre = repository.findById(Short.valueOf(sn));
     if (optIngre.isPresent()) {
       log.info(optIngre.toString());
     } else {
-      log.error(idUpper + ": 재료가 없습니다");
+      log.error("없는 재료 일련번호: " + sn);
     }
   }
 }

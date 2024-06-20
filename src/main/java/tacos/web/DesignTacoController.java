@@ -3,9 +3,6 @@ package tacos.web;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-import org.springframework.beans.factory.NoSuchBeanDefinitionException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -15,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import jakarta.annotation.PostConstruct;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import tacos.Ingredient;
@@ -34,21 +30,6 @@ public class DesignTacoController {
   public DesignTacoController(
       IngredientRepository ingredientRepo) {
     this.ingredientRepo = ingredientRepo;
-  }
-
-  private SN2IngredientRef sn2IngredientRef;
-
-  @Autowired
-  private ApplicationContext applicationContext;
-
-  @PostConstruct
-  public void init() {
-    try {
-      sn2IngredientRef = applicationContext.getBean(SN2IngredientRef.class);
-      log.info("변환기 존재");
-    } catch (NoSuchBeanDefinitionException e) {
-      log.info("변환기 없음");
-    }
   }
 
   @PostMapping

@@ -20,7 +20,6 @@ import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import tacos.Ingredient;
 import tacos.Ingredient.Type;
-import tacos.IngredientRef;
 import tacos.Taco;
 import tacos.TacoOrder;
 import tacos.data.IngredientRepository;
@@ -59,9 +58,6 @@ public class DesignTacoController {
     if (errors.hasErrors()) {
       return "design";
     }
-
-    taco.getIngredientSNs().forEach(
-        sn -> taco.getIngredientRefs().add(new IngredientRef(sn)));
     tacoOrder.addTaco(taco);
     log.info("주문 처리 대상: {}", taco);
 

@@ -17,7 +17,7 @@ public class Ingredient {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  private short id;
+  private Long id;
   private final String code;
   private final String name;
   private final Short typeOrd;

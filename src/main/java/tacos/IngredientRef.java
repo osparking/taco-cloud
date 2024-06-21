@@ -13,5 +13,5 @@ public class IngredientRef {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
-  private final short ingredientSN; // 재료 일련번호
+  private final Long ingredient; // 재료 일련번호
 }

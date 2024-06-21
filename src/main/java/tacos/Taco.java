@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -29,10 +30,7 @@ public class Taco {
 
   @NotNull
   @Size(min = 1, message = "재료를 한 가지 이상 선택하세요.")
-  @ManyToMany
+  @ManyToMany(cascade = CascadeType.ALL)
   private List<IngredientRef> ingredientRefs = new ArrayList<>();
 
-  public void addIngredient(IngredientRef ingredientRef) {
-    this.ingredientRefs.add(ingredientRef);
-  }
 }

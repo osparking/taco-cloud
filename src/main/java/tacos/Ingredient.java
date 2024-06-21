@@ -1,6 +1,8 @@
 package tacos;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -14,8 +16,9 @@ import lombok.NoArgsConstructor;
 public class Ingredient {
 
   @Id
-  private short sn;
-  private final String id;
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private short id;
+  private final String code;
   private final String name;
   private final Short typeOrd;
   
@@ -23,9 +26,9 @@ public class Ingredient {
     WRAP, PROTEIN, VEGGIES, CHEESE, SAUCE
   }
 
-  public Ingredient(String id, String name, short typeOrd) {
+  public Ingredient(String code, String name, short typeOrd) {
     super();
-    this.id = id;
+    this.code = code;
     this.name = name;
     this.typeOrd = typeOrd;
   }

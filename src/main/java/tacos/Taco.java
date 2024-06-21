@@ -4,12 +4,11 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.annotations.ManyToAny;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
@@ -30,7 +29,7 @@ public class Taco {
 
   @NotNull
   @Size(min = 1, message = "재료를 한 가지 이상 선택하세요.")
-  @ManyToAny
+  @ManyToMany
   private List<Ingredient> ingredients = new ArrayList<>();
 
   public void addIngredient(Ingredient ingredient) {

@@ -10,6 +10,6 @@ import tacos.TacoOrder;
 public interface OrderRepository extends CrudRepository<TacoOrder, Long> {
   List<TacoOrder> findByDeliZip(String deliZip);
 
-  List<TacoOrder> readOrdersByDeliZipPlacedAtBetween(String deliZip,
-      LocalDate dateStart, LocalDate dateEnd);
+  List<TacoOrder> readOrdersByDeliZipAndPlacedAtBetween(
+      String deliveryZip, LocalDate startDate, LocalDate endDate);
 }

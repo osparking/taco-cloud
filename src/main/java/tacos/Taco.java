@@ -30,9 +30,9 @@ public class Taco {
   @NotNull
   @Size(min = 1, message = "재료를 한 가지 이상 선택하세요.")
   @ManyToMany
-  private List<Ingredient> ingredients = new ArrayList<>();
+  private List<IngredientRef> ingredientRefs = new ArrayList<>();
 
-  public void addIngredient(Ingredient ingredient) {
-    this.ingredients.add(ingredient);
+  public void addIngredient(IngredientRef ingredientRef) {
+    this.ingredientRefs.add(ingredientRef);
   }
 }

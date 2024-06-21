@@ -65,7 +65,7 @@ public class DesignTacoController {
     order.setDeliRoadAddr("경기도 군포시 당정1로 27");
     order.setDeliDetailAddr("1001동 101호");
     order.setCcNumber("4111111111111111");
-    order.setCcExprY_M("12/26");
+    order.setCcExprYM("12/26");
     order.setCcCvv("123");
 
     return order;

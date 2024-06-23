@@ -17,7 +17,7 @@
         <div class="ingredient-group" id="wraps">
           <h3>타코 빵 선택:</h3>
           <div th:each="ingredient : ${wrap}">
-            <input th:field="*{ingredientRefs}" type="checkbox"
+            <input th:field="*{includedIngredients}" type="checkbox"
               th:value="${ingredient.id}" th:id="${ingredient.code}" />
             <label th:for="${ingredient.code}">
               <span th:text="${ingredient.name}">재료</span></label>
@@ -28,7 +28,7 @@
         <div class="ingredient-group" id="proteins">
           <h3>단백질 선택:</h3>
           <div th:each="ingredient : ${protein}">
-            <input th:field="*{ingredientRefs}" type="checkbox"
+            <input th:field="*{includedIngredients}" type="checkbox"
               th:value="${ingredient.id}" th:id="${ingredient.code}" />
             <label th:for="${ingredient.code}">
               <span th:text="${ingredient.name}">재료</span></label>
@@ -39,7 +39,7 @@
         <div class="ingredient-group" id="cheeses">
           <h3>치즈 선택:</h3>
           <div th:each="ingredient : ${cheese}">
-            <input th:field="*{ingredientRefs}" type="checkbox"
+            <input th:field="*{includedIngredients}" type="checkbox"
               th:value="${ingredient.id}" th:id="${ingredient.code}" />
             <label th:for="${ingredient.code}">
               <span th:text="${ingredient.name}">재료</span></label>
@@ -50,7 +50,7 @@
         <div class="ingredient-group" id="veggies">
           <h3>야채 선택:</h3>
           <div th:each="ingredient : ${veggies}">
-            <input th:field="*{ingredientRefs}" type="checkbox"
+            <input th:field="*{includedIngredients}" type="checkbox"
               th:value="${ingredient.id}" th:id="${ingredient.code}" />
             <label th:for="${ingredient.code}">
               <span th:text="${ingredient.name}">재료</span></label>
@@ -61,7 +61,7 @@
         <div class="ingredient-group" id="sauces">
           <h3>소스 선택:</h3>
           <div th:each="ingredient : ${sauce}">
-            <input th:field="*{ingredientRefs}" type="checkbox"
+            <input th:field="*{includedIngredients}" type="checkbox"
               th:value="${ingredient.id}" th:id="${ingredient.code}" />
             <label th:for="${ingredient.code}">
               <span th:text="${ingredient.name}">재료</span></label>

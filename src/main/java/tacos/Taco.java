@@ -38,4 +38,10 @@ public class Taco {
     inverseJoinColumns = @JoinColumn(name = "ingredient_id"))
   private List<Ingredient> includedIngredients = new ArrayList<>();
   // @formatter:on
+
+  @Override
+  public String toString() {
+    return "Taco [id=" + id + ", createdAt=" + createdAt + ", name=" + name
+        + "]";
+  }
 }

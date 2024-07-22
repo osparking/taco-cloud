@@ -5,12 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
@@ -41,6 +43,10 @@ public class Taco {
     inverseJoinColumns = @JoinColumn(name = "ingredient_id"))
   private List<Ingredient> includedIngredients = new ArrayList<>();
   // @formatter:on
+  
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "order_id")
+  private TacoOrder order;
 
   @Override
   public String toString() {

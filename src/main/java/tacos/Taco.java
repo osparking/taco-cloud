@@ -28,6 +28,9 @@ public class Taco {
   @NotNull
   @Size(min = 2, message = "이름은 최소 2 문자라야 됩니다.")
   private String name;
+  
+  @NotNull
+  private Long checkedWrapId;
 
   // @formatter:off
   @NotNull

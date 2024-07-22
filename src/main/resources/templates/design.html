@@ -26,7 +26,7 @@
         <div class="ingredient-group" id="wraps">
           <h3>타코 빵 선택:</h3>
           <div th:each="ingredient : ${wrap}">
-            <input th:field="*{includedIngredients}" type="checkbox"
+            <input th:field="${taco.checkedWrapId}" type="radio"
               th:value="${ingredient.id}" th:id="${ingredient.code}" />
             <label th:for="${ingredient.code}">
               <span th:text="${ingredient.name}">재료</span></label>

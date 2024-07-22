@@ -6,4 +6,5 @@ import tacos.Ingredient;
 
 public interface IngredientRepository
     extends CrudRepository<Ingredient, Short> {
+  Ingredient findByName(String name);
 }

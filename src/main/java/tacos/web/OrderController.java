@@ -11,6 +11,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import tacos.Taco;
 import tacos.TacoOrder;
 import tacos.data.OrderRepository;
 
@@ -36,6 +37,9 @@ public class OrderController {
       return "orderForm";
     }
 
+    for (Taco taco: order.getTacos()) {
+      taco.setOrder(order);
+    }
     orderRepository.save(order);
     log.info("타코 주문 : {}", order);
     sessionStatus.setComplete();

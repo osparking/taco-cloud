@@ -74,6 +74,8 @@ public class DesignTacoController {
   @ModelAttribute(name = "taco")
   public Taco taco() {
     var taco = new Taco();
+    Ingredient cornTortiya = ingredientRepo.findByName("옥수수 토르티야");
+    taco.setCheckedWrapId(cornTortiya.getId());
     taco.setName("최애 타코");
     return taco;
   }

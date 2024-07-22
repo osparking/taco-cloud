@@ -34,7 +34,7 @@ public class Taco {
 
   // @formatter:off
   @NotNull
-  @Size(min = 1, message = "*재료를 한 가지 이상 선택하세요.")
+  @Size(min = 1, message = "*타코 빵 이외의 재료를 한 가지 이상 선택하세요.")
   @ManyToMany
   @JoinTable(name = "taco_ingredients", 
     joinColumns = @JoinColumn(name = "taco_id"), 

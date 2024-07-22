@@ -23,6 +23,7 @@ create table if not exists Taco (
   id identity,
   created_at timestamp not null,
   name varchar(50) not null,
+  checked_wrap_id bigint not null,
   taco_order_id bigint not null, 
   taco_order_key bigint not null 
 );

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <title>타코 클라우드</title>
+</head>
+
+<body>
+  <h1>유저 등록</h1>
+
+  <img th:src="@{/images/TacoCloud.png}" />
+
+  <form method="POST" th:action="@{/register}" id="registerForm">
+
+    <label for="username">유저이름: </label>
+    <input type="text" name="username" /><br />
+
+    <label for="password">비밀번호: </label>
+    <input type="password" name="password" /><br />
+
+    <label for="confirm">비밀번호 확인: </label>
+    <input type="password" name="confirm" /><br />
+
+    <label for="fullname">성명: </label>
+    <input type="text" name="custName" /><br />
+
+    <label for="zip">Zip: </label>
+    <input type="text" name="custZip" /><br />
+    
+    <label for="street">도로명 주소: </label>
+    <input type="text" name="roadAddr" /><br />
+
+    <label for="city">상세 주소: </label>
+    <input type="text" name="detailAddr" /><br />
+
+    <label for="state">전화번호: </label>
+    <input type="text" name="phoneNumber" /><br />
+
+    <input type="submit" value="등록" />
+  </form>
+</body>
+
+</html>

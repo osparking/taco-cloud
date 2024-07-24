@@ -2,6 +2,7 @@ package tacos.config;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Formatter;
 import java.util.List;
 
 import org.springframework.context.annotation.Bean;
@@ -38,6 +39,11 @@ public class SecuriConfi {
 
   @Bean
   SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    http
+      .authorizeHttpRequests(authz ->
+        authz
+          .requestMatchers("/design", "/orders").hasRole("USER")
+          .requestMatchers("/", "/**").permitAll());
     return http.build();
   }
 }

@@ -2,8 +2,8 @@ package tacos.data;
 
 import org.springframework.data.repository.CrudRepository;
 
-import tacos.entity.User;
+import tacos.entity.TacoUser;
 
-public interface UserRepository extends CrudRepository<User, Long> {
-  User findByUsername(String username);
+public interface UserRepository extends CrudRepository<TacoUser, Long> {
+  TacoUser findByUsername(String username);
 }

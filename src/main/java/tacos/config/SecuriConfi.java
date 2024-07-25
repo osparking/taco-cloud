@@ -20,7 +20,7 @@ public class SecuriConfi {
     http
       .authorizeHttpRequests(authz ->
         authz
-          .requestMatchers("/design", "/orders").hasRole("USER")
+          .requestMatchers("/design", "/orders/**").hasRole("USER")
           .requestMatchers("/", "/**").permitAll());
     
     http.formLogin(foLoCfgr -> foLoCfgr.loginPage("/login"));

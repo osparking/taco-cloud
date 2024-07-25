@@ -22,6 +22,9 @@ public class SecuriConfi {
         authz
           .requestMatchers("/design", "/orders").hasRole("USER")
           .requestMatchers("/", "/**").permitAll());
+    
+    http.formLogin(foLoCfgr -> foLoCfgr.loginPage("/login"));
+    
     return http.build();
   }
 }

@@ -12,7 +12,7 @@
     <h1>나는 타코 요리사</h1>
     <img th:src="@{/images/TacoCloud.png}" />
     
-    <form method="POST" th:object="${taco}">
+    <form method="POST" th:object="${taco}" th:action="@{/design}">
       <div th:if="${#fields.hasErrors()}">
         <span class="validationError">
         아래 표시된 오류를 수정한 뒤 다시 제출하세요.

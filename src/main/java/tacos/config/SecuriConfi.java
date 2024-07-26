@@ -2,7 +2,6 @@ package tacos.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -25,7 +24,10 @@ public class SecuriConfi {
           .requestMatchers("/design", "/orders/**").authenticated()
           .requestMatchers("/", "/**").permitAll());
 
-    http.oauth2Login(Customizer.withDefaults());
+    http.formLogin(foLoCfgr -> foLoCfgr.loginPage("/login")
+        .defaultSuccessUrl("/design", true));
+    
+    http.oauth2Login(ht -> ht.loginPage("/login"));
     
     return http.build();
   }

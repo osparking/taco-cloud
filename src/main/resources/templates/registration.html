@@ -18,7 +18,9 @@
     
     <label for="password">비밀번호: </label>
     <input type="password" name = "password" id="password" 
-            th:value="*{password}"/><br />              
+            th:value="*{password}" onKeyUp="return verifyPassword()" />
+    <span hidden id = "message" style="color:red">*(비 공백)비밀번호를 넣으세요!
+      </span><br />
     <label for="confirm">비밀번호 확인: </label>
     <input type="password" name = "confirm" id="confirm" 
             th:value="*{password}"/><br />
@@ -42,8 +44,18 @@
   </form>
   <script>
     function verifyPassword() {
-    }     
+      var pwFld = document.getElementById("password");
+      // 비밀번호 공백이면, 계정 등록 중단. 
+      if (pwFld.value.trim() === "") {
+        var msgSpan = document.getElementById("message");
+        msgSpan.removeAttribute("hidden");
+        pwFld.focus();
+        return false;
+      } else {
+        var msgSpan = document.getElementById("message");
+        msgSpan.setAttribute("hidden", "hidden");        
+      }      
+    }
   </script>  
 </body>
-
 </html>

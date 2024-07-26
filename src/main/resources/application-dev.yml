@@ -1,0 +1,16 @@
+spring:
+  application: 
+    name: taco-cloud
+
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:taco_cloud;DB_CLOSE_DELAY=-1
+    generate-unique-name: false
+    username: sa
+    password:
+
+  h2:
+    console:
+      enabled: true
+  jpa:
+    show-sql: true

@@ -43,6 +43,28 @@
     <input type="submit" value="등록" />
   </form>
   <script>
+    function verifyMatchPwd() {
+      if (verifyPassword && verifyConfirm()) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    
+    function verifyConfirm() {
+      var pwFld = document.getElementById("password");
+      var cnfFld = document.getElementById("confirm");
+      if (pwFld.value.trim() === cnfFld.value.trim()) {
+        return true;
+      } else {
+        var msgSpan = document.getElementById("message");
+        msgSpan.innerText = "*비밀번호 확인이 상이합니다!";
+        msgSpan.removeAttribute("hidden");
+        pwFld.focus();        
+        return false;
+      }      
+    }
+    
     function verifyPassword() {
       var pwFld = document.getElementById("password");
       // 비밀번호 공백이면, 계정 등록 중단. 

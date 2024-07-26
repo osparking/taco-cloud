@@ -11,7 +11,7 @@
   <img th:src="@{/images/TacoCloud.png}" />
 
   <form method="POST" th:action="@{/register}" id="registerForm"
-      th:object="${tacoUser}" onsubmit ="return verifyPassword()">
+      th:object="${tacoUser}" onsubmit ="return verifyMatchPwd()">
 
     <label for="username">유저이름: </label>
     <input type="text" th:field = "*{username}" /><br />
@@ -70,12 +70,14 @@
       // 비밀번호 공백이면, 계정 등록 중단. 
       if (pwFld.value.trim() === "") {
         var msgSpan = document.getElementById("message");
+        msgSpan.innerText = "*(비 공백)비밀번호를 넣으세요!";
         msgSpan.removeAttribute("hidden");
         pwFld.focus();
         return false;
       } else {
         var msgSpan = document.getElementById("message");
-        msgSpan.setAttribute("hidden", "hidden");        
+        msgSpan.setAttribute("hidden", "hidden");
+        return true;
       }      
     }
   </script>  

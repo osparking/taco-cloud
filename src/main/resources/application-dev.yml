@@ -14,3 +14,12 @@ spring:
       enabled: true
   jpa:
     show-sql: true
+
+  security:
+    oauth2:
+      client:
+        registration:
+          facebook:
+            clientId: ${CLIENT_ID_FACEBOOK}
+            clientSecret: ${CLIENT_SECRET_FACEBOOK}}
+            scope: email, public_profile    

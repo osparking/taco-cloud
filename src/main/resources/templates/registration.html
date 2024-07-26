@@ -11,7 +11,7 @@
   <img th:src="@{/images/TacoCloud.png}" />
 
   <form method="POST" th:action="@{/register}" id="registerForm"
-      th:object="${tacoUser}">
+      th:object="${tacoUser}" onsubmit ="return verifyPassword()">
 
     <label for="username">유저이름: </label>
     <input type="text" th:field = "*{username}" /><br />
@@ -40,6 +40,10 @@
 
     <input type="submit" value="등록" />
   </form>
+  <script>
+    function verifyPassword() {
+    }     
+  </script>  
 </body>
 
 </html>

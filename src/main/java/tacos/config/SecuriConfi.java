@@ -27,7 +27,8 @@ public class SecuriConfi {
     http.formLogin(foLoCfgr -> foLoCfgr.loginPage("/login")
         .defaultSuccessUrl("/design", true));
     
-    http.oauth2Login(ht -> ht.loginPage("/login"));
+    http.oauth2Login(ht -> ht.loginPage("/login")
+        .defaultSuccessUrl("/design", true));
     
     return http.build();
   }

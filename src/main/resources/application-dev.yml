@@ -20,6 +20,10 @@ spring:
       client:
         registration:
           facebook:
-            clientId: ${CLIENT_ID_FACEBOOK}
-            clientSecret: ${CLIENT_SECRET_FACEBOOK}}
+            clientId: ${CLIENT_ID_FACEBOOK:518366633951705}
+            clientSecret: ${CLIENT_SECRET_FACEBOOK:651196dfafa2123d14c09ee25e4c991a}
+            scope: email, public_profile    
+          github:
+            clientId: ${CLIENT_ID_GITHUB:Ov23liCBLLUjii41pS7k}
+            clientSecret: ${CLIENT_SECRET_GITHUB:9da8734b56aad52d91b268fe6834a8df12447d95}
             scope: email, public_profile    

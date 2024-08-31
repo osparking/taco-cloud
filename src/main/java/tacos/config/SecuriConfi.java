@@ -30,6 +30,8 @@ public class SecuriConfi {
     http.oauth2Login(ht -> ht.loginPage("/login")
         .defaultSuccessUrl("/design", true));
     
+    http.logout(loc -> loc.logoutSuccessUrl("/login?logout=true"));
+    
     return http.build();
   }
   

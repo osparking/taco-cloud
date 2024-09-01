@@ -5,9 +5,11 @@
   <meta charset="UTF-8">
   <title>타코 로그인</title>
   <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+  <link rel="stylesheet" th:href="@{/styles.css}" />
 </head>
 
 <body>
+  <div th:replace="~{fragments/top_bar}"></div>
   <h1>타코 구름 위에 로그인하세요.</h1>
   <img th:src="@{/images/TacoCloud.png}" alt="타코 영상" />
 

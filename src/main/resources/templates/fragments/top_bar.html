@@ -2,6 +2,8 @@
   <ul>
     <li>
       <a class="nav-link" th:href="${'/'}" th:text="${'홈(Home)'}"></a></li>      
+    <li>
+      <a th:href="${'/register'}" onclick="return registerFtn();">고객등록</a></li>    
     <li th:unless="${username}">
       <a class="nav-link" th:href="${'/login'}" th:text="로그인"></a></li>    
     <li >
@@ -16,6 +18,15 @@
 <script>
   function signOutFtn() {
     document.signOutForm.submit();
+  }  
+  
+  function registerFtn() {
+    var username = "[[${username}]]";
+    if (username) {
+      return confirm("새 고객 등록을 위하여 로그아웃하겠습니까?");
+    } else {
+      return true;
+    }    
   }  
 </script>
 

@@ -1,0 +1,19 @@
+<nav class="navbar bg-dark navbar-dark navbar-expand-lg">
+  <ul>
+    <li>
+      <a class="nav-link" th:href="${'/'}" th:text="${'홈(Home)'}"></a></li>      
+    <li th:unless="${username}">
+      <a class="nav-link" th:href="${'/login'}" th:text="로그인"></a></li>    
+    <li th:if="${username}">
+      <a href="javascript: signOutFtn();">로그아웃</a></li>      
+  </ul>  
+</nav>
+<form method="POST" th:action="@{/logout}" name="signOutForm">   
+</form>
+
+<script>
+  function signOutFtn() {
+    document.signOutForm.submit();
+  }  
+</script>
+

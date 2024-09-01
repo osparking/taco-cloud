@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import jakarta.servlet.http.HttpServletRequest;
 import tacos.data.RegistrationForm;
 import tacos.data.UserRepository;
 import tacos.entity.TacoUser;
@@ -32,7 +33,8 @@ public class RegistrationController {
   }
   
   @GetMapping
-  public String registerForm() {
+  public String registerForm(HttpServletRequest request) {
+    request.getSession().invalidate();
     return "registration";
   }
 

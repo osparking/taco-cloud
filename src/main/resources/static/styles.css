@@ -27,3 +27,13 @@ div.ingredient-group {
 span.validationError {
 	color: red;
 }
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  display: inline;
+}

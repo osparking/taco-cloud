@@ -37,3 +37,17 @@ ul {
 li {
   display: inline;
 }
+
+.blink {
+    animation: blinker 1.5s linear infinite;
+    color: red;
+    font-size: 1em;
+    /* Larger, responsive font size */
+    margin-bottom: 20px;
+}
+
+@keyframes blinker {
+    50% {
+        opacity: 0;
+    }
+}

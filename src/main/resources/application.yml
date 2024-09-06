@@ -1,3 +1,29 @@
 spring:
-  application: 
+  application:
     name: taco-cloud
+
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:taco_cloud;DB_CLOSE_DELAY=-1
+    generate-unique-name: false
+    username: sa
+    password:
+
+  h2:
+    console:
+      enabled: true
+  jpa:
+    show-sql: true
+
+  security:
+    oauth2:
+      client:
+        registration:
+          facebook:
+            clientId: ${CLIENT_ID_FACEBOOK:518366633951705}
+            clientSecret: ${CLIENT_SECRET_FACEBOOK:651196dfafa2123d14c09ee25e4c991a}
+            scope: email, public_profile
+          github:
+            clientId: ${CLIENT_ID_GITHUB:Ov23liCBLLUjii41pS7k}
+            clientSecret: ${CLIENT_SECRET_GITHUB:9da8734b56aad52d91b268fe6834a8df12447d95}
+            scope: email, public_profile

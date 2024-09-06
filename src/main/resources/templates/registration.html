@@ -3,6 +3,7 @@
 
 <head>
   <title>타코 클라우드</title>
+  <link rel="stylesheet" th:href="@{/styles.css}" />
 </head>
 
 <body>
@@ -14,8 +15,9 @@
       th:object="${tacoUser}" onsubmit ="return verifyMatchPwd()">
 
     <label for="username">유저이름: </label>
-    <input type="text" th:field = "*{username}" /><br />
-    
+    <input type="text" th:field = "*{username}" />
+    <span class="blink" th:if="${!#strings.isEmpty(unameInUse)}"
+       th:text="${unameInUse}">중복 유저 이름</span></br>
     <label for="password">비밀번호: </label>
     <input type="password" name = "password" id="password" 
             th:value="*{password}" onKeyUp="return verifyPassword()" />
@@ -28,7 +30,7 @@
     <label for="custName">성명: </label>
     <input type="text" th:field = "*{custName}" /><br />
     
-    <label for="custZip">Zip: </label>
+    <label for="custZip">우편번호: </label>
     <input type="text" th:field = "*{custZip}" /><br />
     
     <label for="roadAddr">도로명 주소: </label>

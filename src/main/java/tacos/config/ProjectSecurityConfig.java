@@ -9,7 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
-public class SecuriConfi {
+public class ProjectSecurityConfig {
 
   @Bean
   PasswordEncoder passwordEncoder() {

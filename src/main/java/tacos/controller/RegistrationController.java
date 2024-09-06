@@ -30,8 +30,12 @@ public class RegistrationController {
   }
   
   @GetMapping
-  public String registerForm(HttpServletRequest request) {
+  public String registerForm(HttpServletRequest request, Model model,
+                             @RequestParam(required = false) String uname) {
     request.getSession().invalidate();
+    if ("inUse".equals(uname)) {
+      model.addAttribute("unameInUse", "사용 중인 유저 이름입니다.");
+    }
     return "registration";
   }
 

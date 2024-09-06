@@ -3,14 +3,11 @@ package tacos.entity;
 import java.util.Arrays;
 import java.util.Collection;
 
+import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,6 +25,7 @@ public class TacoUser implements UserDetails {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
+  @Column(unique = true)
   private final String username;
   private final String password;
   private final String custName;

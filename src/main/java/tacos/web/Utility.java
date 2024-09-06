@@ -2,6 +2,7 @@ package tacos.web;
 
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.ui.Model;
 
 import tacos.entity.TacoUser;
@@ -13,11 +14,16 @@ public class Utility {
     /**
      * 유저 로그인 정보(username) 모델에 엊는다.
      */
-    var auth = SecurityContextHolder.getContext().getAuthentication();    
+    var auth = SecurityContextHolder.getContext().getAuthentication();
     String username = null;
 
     if (!(auth instanceof AnonymousAuthenticationToken)) {
-      username = ((TacoUser)auth.getPrincipal()).getUsername();
+      if (auth.getPrincipal() instanceof OAuth2User) {
+        username = ((OAuth2User)auth.getPrincipal()).getAttributes()
+                .get("email").toString();
+      } else {
+        username = ((TacoUser) auth.getPrincipal()).getUsername();
+      }
     }
     model.addAttribute("username", username);    
   }

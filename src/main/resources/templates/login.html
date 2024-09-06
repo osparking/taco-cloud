@@ -10,6 +10,8 @@
 
 <body>
   <div th:replace="~{fragments/top_bar}"></div>
+  <p class="blink" th:if="${!#strings.isEmpty(loginMsg)}" th:text="${loginMsg}">
+    타코 설계 조건</p>
   <h1>타코 구름 위에 로그인하세요.</h1>
   <img th:src="@{/images/TacoCloud.png}" alt="타코 영상" />
 

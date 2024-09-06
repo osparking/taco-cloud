@@ -1,16 +1,13 @@
 package tacos.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.web.bind.annotation.*;
 import tacos.data.RegistrationForm;
 import tacos.data.UserRepository;
 import tacos.entity.TacoUser;
+import org.springframework.ui.Model;
 
 @Controller
 @RequestMapping("/register")
@@ -40,8 +37,12 @@ public class RegistrationController {
 
   @PostMapping
   public String processRegistration(RegistrationForm form) {
-    userRepo.save(form.toUser(passwordEncoder));
-    return "redirect:/login";
+    if (userRepo.findByUsername(form.getUsername()) == null) {
+      userRepo.save(form.toUser(passwordEncoder));
+      return "redirect:/login";
+    } else {
+      return "redirect:/register?uname=inUse";
+    }
   }
 
 }

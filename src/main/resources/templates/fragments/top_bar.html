@@ -1,3 +1,4 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <nav class="navbar bg-dark navbar-dark navbar-expand-lg">
   <ul>
     <li>
@@ -9,6 +10,7 @@
     <li >
       <a th:href="${'/design'}">타코설계</a></li>      
     <li th:if="${username}">
+      <span th:text="${username + ' : '}">유저이름</span>
       <a href="javascript: signOutFtn();">로그아웃</a></li>      
   </ul>  
 </nav>

@@ -27,3 +27,7 @@ spring:
             clientId: ${CLIENT_ID_GITHUB:Ov23liCBLLUjii41pS7k}
             clientSecret: ${CLIENT_SECRET_GITHUB:9da8734b56aad52d91b268fe6834a8df12447d95}
             scope: email, public_profile
+          google:
+            clientId: ${CLIENT_ID_GOOGLE:Ov23liCBLLUjii41pS7k}
+            clientSecret: ${CLIENT_SECRET_GOOGLE:9da8734b56aad52d91b268fe6834a8df12447d95}
+            scope: email, openid

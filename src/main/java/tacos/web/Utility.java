@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 
 import tacos.entity.TacoUser;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 public class Utility {
@@ -27,8 +28,14 @@ public class Utility {
 
         if ("naver".equals(token.getAuthorizedClientRegistrationId())) {
           attributes = token.getPrincipal().getAttribute("response");
+          username = attributes.get("email").toString();
+        } else if ("kakao".equals(token.getAuthorizedClientRegistrationId())) {
+          var dd = (token.getPrincipal().getAttribute("kakao_account"));
+          var profile = ((HashMap<String, Object>)dd).get("profile");
+          username = ((HashMap<String, Object>)profile).get("nickname").toString();
+        } else {
+          username = attributes.get("email").toString();
         }
-        username = attributes.get("email").toString();
       } else {
         username = ((TacoUser) auth.getPrincipal()).getUsername();
       }

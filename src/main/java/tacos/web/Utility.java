@@ -2,10 +2,13 @@ package tacos.web;
 
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.ui.Model;
 
 import tacos.entity.TacoUser;
+
+import java.util.LinkedHashMap;
 
 public class Utility {
   
@@ -19,8 +22,13 @@ public class Utility {
 
     if (!(auth instanceof AnonymousAuthenticationToken)) {
       if (auth.getPrincipal() instanceof OAuth2User) {
-        username = ((OAuth2User)auth.getPrincipal()).getAttributes()
-                .get("email").toString();
+        var token = (OAuth2AuthenticationToken) auth;
+        var attributes = ((OAuth2User) auth.getPrincipal()).getAttributes();
+
+        if ("naver".equals(token.getAuthorizedClientRegistrationId())) {
+          attributes = token.getPrincipal().getAttribute("response");
+        }
+        username = attributes.get("email").toString();
       } else {
         username = ((TacoUser) auth.getPrincipal()).getUsername();
       }

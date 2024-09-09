@@ -1,17 +1,17 @@
 package tacos;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import org.hibernate.validator.constraints.CreditCardNumber;
-
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
+import org.hibernate.validator.constraints.CreditCardNumber;
 import tacos.entity.TacoUser;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -24,12 +24,14 @@ public class TacoOrder {
   private LocalDateTime placedAt = LocalDateTime.now();
 
   @ManyToOne
-  private TacoUser user;
+  @JoinColumn(name = "userId", nullable = false)
+  @JsonIgnore
+  private TacoUser tacoUser;
 
   @NotBlank(message = "고객 성명은 필수 입력 항목입니다.")
   private String custName; // 고객명
 
-  @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, 
+  @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER,
       mappedBy = "order")
   private List<Taco> tacos = new ArrayList<>();
 

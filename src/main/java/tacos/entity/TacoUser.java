@@ -2,7 +2,9 @@ package tacos.entity;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -13,6 +15,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import tacos.TacoOrder;
 
 @Entity
 @Data
@@ -23,7 +26,7 @@ public class TacoUser implements UserDetails {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  private Long id;
+  private Long userId;
 
   @Column(unique = true)
   private final String username;
@@ -33,6 +36,10 @@ public class TacoUser implements UserDetails {
   private final String roadAddr;
   private final String detailAddr;
   private final String phoneNumber;
+
+  @OneToMany(mappedBy = "tacoUser")
+  @JsonIgnore
+  private List<TacoOrder> tacoOrders;
 
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {

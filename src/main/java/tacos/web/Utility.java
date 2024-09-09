@@ -28,15 +28,17 @@ public class Utility {
         var attributes = ((OAuth2User) auth.getPrincipal()).getAttributes();
 
         socialType = token.getAuthorizedClientRegistrationId();
-        if ("naver".equals(socialType)) {
-          attributes = token.getPrincipal().getAttribute("response");
-          username = attributes.get("email").toString();
-        } else if ("kakao".equals(socialType)) {
-          attributes = (token.getPrincipal().getAttribute("kakao_account"));
-          username = attributes.get("email").toString();
-        } else {
-          username = attributes.get("email").toString();
+        switch (socialType) {
+          case "naver":
+            attributes = token.getPrincipal().getAttribute("response");
+            break;
+          case "kakao":
+            attributes = (token.getPrincipal().getAttribute("kakao_account"));
+            break;
+          default:
+            break;
         }
+        username = attributes.get("email").toString();
       } else {
         username = ((TacoUser) auth.getPrincipal()).getUsername();
       }

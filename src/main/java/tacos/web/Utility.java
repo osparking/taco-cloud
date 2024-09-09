@@ -30,9 +30,8 @@ public class Utility {
           attributes = token.getPrincipal().getAttribute("response");
           username = attributes.get("email").toString();
         } else if ("kakao".equals(token.getAuthorizedClientRegistrationId())) {
-          var dd = (token.getPrincipal().getAttribute("kakao_account"));
-          var profile = ((HashMap<String, Object>)dd).get("profile");
-          username = ((HashMap<String, Object>)profile).get("nickname").toString();
+          var kakaoAccount = (token.getPrincipal().getAttribute("kakao_account"));
+          username = ((HashMap<String, String>)kakaoAccount).get("email");
         } else {
           username = attributes.get("email").toString();
         }

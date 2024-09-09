@@ -10,8 +10,9 @@
     <li >
       <a th:href="${'/design'}">타코설계</a></li>      
     <li th:if="${username}">
+      <span th:if="${socialType}" th:text="${' ' + socialType + '-'}">소셜</span>
       <span th:text="${username + ' : '}">유저이름</span>
-      <a href="javascript: signOutFtn();">로그아웃</a></li>      
+      <a href="javascript: signOutFtn();">로그아웃</a></li>
   </ul>  
 </nav>
 <form method="POST" th:action="@{/logout}" name="signOutForm">   

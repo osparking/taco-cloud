@@ -36,9 +36,13 @@ public class TacoUser implements UserDetails {
   private final String roadAddr;
   private final String detailAddr;
   private final String phoneNumber;
+  private int orderCount;
+
+  public int getOrderCount() {
+    return tacoOrders.size();
+  }
 
   @OneToMany(mappedBy = "tacoUser")
-  @JsonIgnore
   private List<TacoOrder> tacoOrders;
 
   @Override

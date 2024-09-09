@@ -44,7 +44,7 @@ public class OrderController {
     for (Taco taco: order.getTacos()) {
       taco.setOrder(order);
     }
-    order.setUser(tacoUser);
+    order.setTacoUser(tacoUser);
     orderRepository.save(order);
     log.info("타코 주문 : {}", order);
     sessionStatus.setComplete();

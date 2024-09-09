@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -46,6 +47,7 @@ public class Taco {
   
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "order_id")
+  @JsonIgnore
   private TacoOrder order;
 
   @Override

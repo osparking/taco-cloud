@@ -20,16 +20,18 @@ public class Utility {
      */
     var auth = SecurityContextHolder.getContext().getAuthentication();
     String username = null;
+    String socialType = null;
 
     if (!(auth instanceof AnonymousAuthenticationToken)) {
       if (auth.getPrincipal() instanceof OAuth2User) {
         var token = (OAuth2AuthenticationToken) auth;
         var attributes = ((OAuth2User) auth.getPrincipal()).getAttributes();
+        socialType = token.getAuthorizedClientRegistrationId();
 
-        if ("naver".equals(token.getAuthorizedClientRegistrationId())) {
+        if ("naver".equals(socialType)) {
           attributes = token.getPrincipal().getAttribute("response");
           username = attributes.get("email").toString();
-        } else if ("kakao".equals(token.getAuthorizedClientRegistrationId())) {
+        } else if ("kakao".equals(socialType)) {
           var kakaoAccount = (token.getPrincipal().getAttribute("kakao_account"));
           username = ((HashMap<String, String>)kakaoAccount).get("email");
         } else {
@@ -39,6 +41,7 @@ public class Utility {
         username = ((TacoUser) auth.getPrincipal()).getUsername();
       }
     }
-    model.addAttribute("username", username);    
+    model.addAttribute("socialType", socialType);
+    model.addAttribute("username", username);
   }
 }

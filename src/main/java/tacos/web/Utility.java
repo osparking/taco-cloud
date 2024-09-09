@@ -26,14 +26,14 @@ public class Utility {
       if (auth.getPrincipal() instanceof OAuth2User) {
         var token = (OAuth2AuthenticationToken) auth;
         var attributes = ((OAuth2User) auth.getPrincipal()).getAttributes();
-        socialType = token.getAuthorizedClientRegistrationId();
 
+        socialType = token.getAuthorizedClientRegistrationId();
         if ("naver".equals(socialType)) {
           attributes = token.getPrincipal().getAttribute("response");
           username = attributes.get("email").toString();
         } else if ("kakao".equals(socialType)) {
-          var kakaoAccount = (token.getPrincipal().getAttribute("kakao_account"));
-          username = ((HashMap<String, String>)kakaoAccount).get("email");
+          attributes = (token.getPrincipal().getAttribute("kakao_account"));
+          username = attributes.get("email").toString();
         } else {
           username = attributes.get("email").toString();
         }

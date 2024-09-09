@@ -1,5 +1,10 @@
 package tacos.web;
 
+import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.AuthenticatedPrincipal;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,13 +12,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
-
-import jakarta.validation.Valid;
-import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import tacos.Taco;
 import tacos.TacoOrder;
 import tacos.data.OrderRepository;
+import tacos.data.UserRepository;
+import tacos.entity.TacoUser;
 
 @Slf4j
 @Controller
@@ -31,7 +34,8 @@ public class OrderController {
 
   @PostMapping
   public String processOrder(@Valid TacoOrder order, Errors errors,
-      SessionStatus sessionStatus) {
+                             SessionStatus sessionStatus,
+                             @AuthenticationPrincipal TacoUser tacoUser) {
 
     if (errors.hasErrors()) {
       return "orderForm";
@@ -40,6 +44,7 @@ public class OrderController {
     for (Taco taco: order.getTacos()) {
       taco.setOrder(order);
     }
+    order.setUser(tacoUser);
     orderRepository.save(order);
     log.info("타코 주문 : {}", order);
     sessionStatus.setComplete();

@@ -3,15 +3,11 @@ spring:
     name: taco-cloud
 
   datasource:
-    driver-class-name: org.h2.Driver
-    url: jdbc:h2:mem:taco_cloud;DB_CLOSE_DELAY=-1
-    generate-unique-name: false
-    username: sa
-    password:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://localhost:3306/tacocloud
+    username: root
+    password: ${MARIADB_ROOT_PWD:s2cRet}
 
-  h2:
-    console:
-      enabled: true
   jpa:
     show-sql: true
 

@@ -58,4 +58,21 @@ public class TacoOrder {
   public void addTaco(Taco taco) {
     tacos.add(taco);
   }
+
+  @Override
+  public String toString() {
+    return "TacoOrder{" +
+            "id=" + id +
+            ", placedAt=" + placedAt +
+            ", tacoUser=" + tacoUser +
+            ", custName='" + custName + '\'' +
+            ", tacos=" + tacos +
+            ", deliZip='" + deliZip + '\'' +
+            ", deliRoadAddr='" + deliRoadAddr + '\'' +
+            ", deliDetailAddr='" + deliDetailAddr + '\'' +
+            ", ccNumber='" + ccNumber + '\'' +
+            ", ccCvv='" + ccCvv + '\'' +
+            ", ccExprYM='" + ccExprYM + '\'' +
+            '}';
+  }
 }

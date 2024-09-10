@@ -32,6 +32,7 @@ public class TacoUser implements UserDetails {
   private final String roadAddr;
   private final String detailAddr;
   private final String phoneNumber;
+  @ToString.Exclude
   private int orderCount;
 
   public int getOrderCount() {
@@ -66,4 +67,17 @@ public class TacoUser implements UserDetails {
     return true;
   }
 
+  @Override
+  public String toString() {
+    return "TacoUser{" +
+            "userId=" + userId +
+            ", username='" + username + '\'' +
+            ", password='" + password + '\'' +
+            ", custName='" + custName + '\'' +
+            ", custZip='" + custZip + '\'' +
+            ", roadAddr='" + roadAddr + '\'' +
+            ", detailAddr='" + detailAddr + '\'' +
+            ", phoneNumber='" + phoneNumber + '\'' +
+            '}';
+  }
 }

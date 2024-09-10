@@ -57,3 +57,8 @@ spring:
             tokenUri: https://nid.naver.com/oauth2.0/token
             userInfoUri: https://openapi.naver.com/v1/nid/me
             userNameAttribute: response
+
+logging:
+  level:
+    com.zaxxer.hikari.HikariConfig: DEBUG
+    com.zaxxer.hikari: TRACE

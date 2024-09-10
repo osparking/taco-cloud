@@ -1,5 +1,5 @@
 spring:
-  application: 
+  application:
     name: taco-cloud
 
   datasource:
@@ -10,6 +10,8 @@ spring:
 
   jpa:
     show-sql: true
+    hibernate:
+      ddl-auto: create-drop
 
   security:
     oauth2:

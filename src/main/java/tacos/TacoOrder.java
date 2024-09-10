@@ -6,6 +6,7 @@ import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
+import lombok.ToString;
 import org.hibernate.validator.constraints.CreditCardNumber;
 import tacos.entity.TacoUser;
 
@@ -18,7 +19,7 @@ import java.util.List;
 public class TacoOrder {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
   private LocalDateTime placedAt = LocalDateTime.now();

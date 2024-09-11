@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>타코 구름</title>
+    <link rel="stylesheet" th:href="@{/styles.css}"/>
+</head>
+<body>
+<h1>주문 목록</h1>
+<ul>
+    <li th:each="order : ${orders}"><br>
+        <span th:text="${'* 주문일:' + order.placedAt}">주문일</span> -
+        <span th:text="${', 수령인:' + order.custName}">수령인</span>
+        <ul>
+            <li th:each="taco : ${order.tacos}">&nbsp;
+                <span th:text="${'- 타코이름:' + taco.name}"></span>;
+                <span th:each="ingredient : ${taco.includedIngredients}">
+                    <span th:text="${ingredient.name}">재료</span>,
+                </span>
+            </li>
+        </ul>
+    </li>
+</ul>
+</body>
+</html>

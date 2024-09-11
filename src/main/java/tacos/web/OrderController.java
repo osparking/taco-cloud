@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.AuthenticatedPrincipal;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -50,5 +51,15 @@ public class OrderController {
     sessionStatus.setComplete();
 
     return "redirect:/";
+  }
+
+  @GetMapping
+  public String ordersForUser(
+          @AuthenticationPrincipal TacoUser user, Model model) {
+
+    model.addAttribute("orders",
+            orderRepository.findByTacoUserOrderByPlacedAtDesc(user));
+
+    return "orderList";
   }
 }

@@ -55,3 +55,14 @@ spring:
             tokenUri: https://nid.naver.com/oauth2.0/token
             userInfoUri: https://openapi.naver.com/v1/nid/me
             userNameAttribute: response
+
+logging:
+  file:
+    name: D:\tmp\logs\taco-cloud-prod.log
+
+  pattern:
+    console: ${LOG_PATTERN_CONSOLE:%green(%d{HH:mm:ss:SSS}) %blue(%-5level) %red([%thread]) %yellow(%logger{15}) - %msg%n}
+
+  level:
+    com.zaxxer.hikari.HikariConfig: WARN
+    com.zaxxer.hikari: WARN

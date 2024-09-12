@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -26,6 +27,7 @@ public class TacoUser implements UserDetails {
 
   @Column(unique = true)
   private final String username;
+  @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
   private final String password;
   private final String custName;
   private final String custZip;

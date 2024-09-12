@@ -3,6 +3,7 @@ package tacos.web;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.AuthenticatedPrincipal;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -56,9 +57,9 @@ public class OrderController {
   @GetMapping
   public String ordersForUser(
           @AuthenticationPrincipal TacoUser user, Model model) {
-
+    var page = PageRequest.of(0, 2);
     model.addAttribute("orders",
-            orderRepository.findByTacoUserOrderByPlacedAtDesc(user));
+            orderRepository.findByTacoUserOrderByPlacedAtDesc(user, page));
 
     return "orderList";
   }

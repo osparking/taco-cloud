@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import tacos.Taco;
 import tacos.TacoOrder;
+import tacos.config.MyProperties;
 import tacos.data.OrderRepository;
 import tacos.data.UserRepository;
 import tacos.entity.TacoUser;
@@ -28,6 +29,7 @@ import tacos.entity.TacoUser;
 public class OrderController {
 
   private OrderRepository orderRepository;
+  private MyProperties myProperties;
 
   @GetMapping("/current")
   public String processOrder() {
@@ -57,7 +59,8 @@ public class OrderController {
   @GetMapping
   public String ordersForUser(
           @AuthenticationPrincipal TacoUser user, Model model) {
-    var page = PageRequest.of(0, 2);
+    var page = PageRequest.of(0, myProperties.getPageSize());
+
     model.addAttribute("orders",
             orderRepository.findByTacoUserOrderByPlacedAtDesc(user, page));
 

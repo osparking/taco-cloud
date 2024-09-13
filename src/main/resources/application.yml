@@ -68,3 +68,7 @@ logging:
   level:
     com.zaxxer.hikari.HikariConfig: DEBUG
     com.zaxxer.hikari: TRACE
+
+taco:
+  orders:
+    pageSize: 3

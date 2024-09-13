@@ -66,3 +66,7 @@ logging:
   level:
     com.zaxxer.hikari.HikariConfig: WARN
     com.zaxxer.hikari: WARN
+
+taco:
+  orders:
+    pageSize: 3

@@ -4,7 +4,6 @@ import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.security.core.AuthenticatedPrincipal;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +17,6 @@ import tacos.Taco;
 import tacos.TacoOrder;
 import tacos.config.MyProperties;
 import tacos.data.OrderRepository;
-import tacos.data.UserRepository;
 import tacos.entity.TacoUser;
 
 @Slf4j

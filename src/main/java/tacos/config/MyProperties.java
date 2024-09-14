@@ -8,5 +8,8 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix="taco.orders")
 @Data
 public class MyProperties {
+    /**
+     * 타코 주문 목록 페이지 크기(주문 건수)
+     */
     public int pageSize;
 }

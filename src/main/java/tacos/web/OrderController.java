@@ -61,7 +61,7 @@ public class OrderController {
 
     model.addAttribute("orders",
             orderRepository.findByTacoUserOrderByPlacedAtDesc(user, page));
-
+    Utility.putUsernameTo(model);
     return "orderList";
   }
 }

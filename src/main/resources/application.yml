@@ -2,16 +2,6 @@ spring:
   application:
     name: taco-cloud
 
-  datasource:
-    driver-class-name: org.h2.Driver
-    url: jdbc:h2:mem:taco_cloud;DB_CLOSE_DELAY=-1
-    generate-unique-name: false
-    username: sa
-    password:
-
-  h2:
-    console:
-      enabled: true
   jpa:
     show-sql: true
 
@@ -59,17 +49,10 @@ spring:
             userNameAttribute: response
 
 logging:
-  file:
-    name: D:\tmp\logs\taco-cloud.log
 
   pattern:
     console: ${LOG_PATTERN_CONSOLE:%green(%d{HH:mm:ss:SSS}) %blue(%-5level) %red([%thread]) %yellow(%logger{15}) - %msg%n}
 
-  level:
-    tacos: DEBUG
-    com.zaxxer.hikari.HikariConfig: DEBUG
-    com.zaxxer.hikari: TRACE
-
 taco:
   orders:
-    pageSize: 3
+    pageSize: 10

@@ -8,6 +8,7 @@ import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import org.springframework.context.annotation.Profile;
 import tacos.Ingredient;
 import tacos.data.IngredientRepository;
 
@@ -32,6 +33,7 @@ public class DataSourceBean {
   }
 
   @Bean
+  @Profile("dev")
   ApplicationRunner ingredientLoader(IngredientRepository repo) {
     return (args) -> {
       repo.save(new Ingredient("FLTO", "밀가루 토르티야", (short) 0));

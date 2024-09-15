@@ -6,6 +6,7 @@
     <link rel="stylesheet" th:href="@{/styles.css}"/>
 </head>
 <body>
+<div th:replace="~{fragments/top_bar}"></div>
 <h1>주문 목록</h1>
 <ul>
     <li th:each="order : ${orders}"><br>

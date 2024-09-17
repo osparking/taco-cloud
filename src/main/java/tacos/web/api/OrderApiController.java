@@ -28,6 +28,37 @@ public class OrderApiController {
         }
     }
 
+    @PatchMapping(path="/{orderId}",
+            consumes="application/json", produces = "application/json")
+    public TacoOrder patchOrder(@PathVariable("orderId") Long orderId,
+                                @RequestBody TacoOrder patch) {
+
+        TacoOrder order = orderRepository.findById(orderId).get();
+
+        if (patch.getCustName() != null) {
+            order.setCustName(patch.getCustName());
+        }
+        if (patch.getDeliZip() != null) {
+            order.setDeliZip(patch.getDeliZip());
+        }
+        if (patch.getDeliRoadAddr() != null) {
+            order.setDeliRoadAddr(patch.getDeliRoadAddr());
+        }
+        if (patch.getDeliDetailAddr() != null) {
+            order.setDeliDetailAddr(patch.getDeliDetailAddr());
+        }
+        if (patch.getCcNumber() != null) {
+            order.setCcNumber(patch.getCcNumber());
+        }
+        if (patch.getCcCvv() != null) {
+            order.setCcCvv(patch.getCcCvv());
+        }
+        if (patch.getCcExprYM() != null) {
+            order.setCcExprYM(patch.getCcExprYM());
+        }
+        return orderRepository.save(order);
+    }
+
     @PutMapping(path = "/{orderId}",
             consumes = "application/json", produces = "application/json")
     public TacoOrder putOrder(

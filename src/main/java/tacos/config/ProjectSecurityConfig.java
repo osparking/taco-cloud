@@ -2,6 +2,7 @@ package tacos.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -18,10 +19,13 @@ public class ProjectSecurityConfig {
 
   @Bean
   SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    http.csrf(csrfCfgr -> csrfCfgr.disable());
+
     http
       .authorizeHttpRequests(authz ->
         authz
           .requestMatchers("/design", "/orders/**").authenticated()
+          .requestMatchers("/api/orders/**").authenticated()
           .requestMatchers("/", "/**").permitAll());
 
     http.formLogin(foLoCfgr -> foLoCfgr.loginPage("/login")
@@ -31,6 +35,8 @@ public class ProjectSecurityConfig {
         .defaultSuccessUrl("/design", true));
     
     http.logout(loc -> loc.logoutSuccessUrl("/login?logout=true"));
+
+    http.httpBasic(Customizer.withDefaults());
     
     return http.build();
   }

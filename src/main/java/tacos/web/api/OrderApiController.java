@@ -25,4 +25,12 @@ public class OrderApiController {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
     }
+
+    @PutMapping(path="/{orderId}", consumes="application/json")
+    public TacoOrder putOrder(
+            @PathVariable("orderId") Long orderId,
+            @RequestBody TacoOrder order) {
+        order.setId(orderId);
+        return orderRepository.save(order);
+    }
 }

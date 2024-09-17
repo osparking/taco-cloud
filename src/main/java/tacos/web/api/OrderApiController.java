@@ -3,9 +3,11 @@ package tacos.web.api;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import tacos.TacoOrder;
 import tacos.data.OrderRepository;
+import tacos.entity.TacoUser;
 
 @RestController
 @RequestMapping(path="/api/orders", produces = "application/json")
@@ -26,11 +28,13 @@ public class OrderApiController {
         }
     }
 
-    @PutMapping(path="/{orderId}", consumes="application/json")
+    @PutMapping(path = "/{orderId}",
+            consumes = "application/json", produces = "application/json")
     public TacoOrder putOrder(
-            @PathVariable("orderId") Long orderId,
+            @PathVariable("orderId") Long orderId, Authentication authentication,
             @RequestBody TacoOrder order) {
         order.setId(orderId);
+        order.setTacoUser((TacoUser) authentication.getPrincipal());
         return orderRepository.save(order);
     }
 }

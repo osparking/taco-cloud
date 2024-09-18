@@ -2,6 +2,10 @@ spring:
   application:
     name: taco-cloud
 
+  data:
+    rest:
+      base-path: /data-api
+
   jpa:
     show-sql: true
 

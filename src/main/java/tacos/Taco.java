@@ -17,9 +17,11 @@ import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+import org.springframework.data.rest.core.annotation.RestResource;
 
 @Data
 @Entity
+@RestResource(rel="tacos", path="tacos")
 public class Taco {
 
   @Id

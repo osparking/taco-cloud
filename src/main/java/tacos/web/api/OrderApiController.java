@@ -1,6 +1,7 @@
 package tacos.web.api;
 
 import lombok.AllArgsConstructor;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -16,6 +17,14 @@ import tacos.entity.TacoUser;
 public class OrderApiController {
 
     private OrderRepository orderRepository;
+
+    @DeleteMapping("/{orderId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteOrder(@PathVariable("orderId") Long orderId) {
+        try {
+            orderRepository.deleteById(orderId);
+        } catch (EmptyResultDataAccessException e) {}
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<TacoOrder> tacoOrderById(@PathVariable("id") Long id) {

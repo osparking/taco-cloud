@@ -1,6 +1,7 @@
 package tacos.web.api;
 
 import lombok.AllArgsConstructor;
+import org.hibernate.annotations.NotFound;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +10,9 @@ import org.springframework.web.bind.annotation.*;
 import tacos.TacoOrder;
 import tacos.data.OrderRepository;
 import tacos.entity.TacoUser;
+
+import static org.springframework.http.HttpStatus.NOT_FOUND;
+import static org.springframework.http.HttpStatus.NO_CONTENT;
 
 @RestController
 @RequestMapping(path="/api/orders", produces = "application/json")
@@ -19,11 +23,16 @@ public class OrderApiController {
     private OrderRepository orderRepository;
 
     @DeleteMapping("/{orderId}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteOrder(@PathVariable("orderId") Long orderId) {
+    public ResponseEntity deleteOrder(@PathVariable("orderId") Long orderId) {
         try {
-            orderRepository.deleteById(orderId);
+            if (orderRepository.findById(orderId).isEmpty()) {
+                return new ResponseEntity(null, NOT_FOUND);
+            } else {
+                orderRepository.deleteById(orderId);
+            }
         } catch (EmptyResultDataAccessException e) {}
+
+        return new ResponseEntity(null, NO_CONTENT);
     }
 
     @GetMapping("/{id}")
@@ -33,7 +42,7 @@ public class OrderApiController {
         if (optTacoOrder.isPresent()) {
             return new ResponseEntity<>(optTacoOrder.get(), HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(null, NOT_FOUND);
         }
     }
 

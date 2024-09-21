@@ -23,9 +23,9 @@ public class Ingredient {
   private Long id;
 
   @Column(unique = true)
-  private final String code;
-  private final String name;
-  private final Short typeOrd;
+  private String code;
+  private String name;
+  private Short typeOrd;
   
   public enum Type {
     WRAP, PROTEIN, VEGGIES, CHEESE, SAUCE

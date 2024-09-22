@@ -1,12 +1,10 @@
 package tacos.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import lombok.extern.slf4j.Slf4j;
+import tacos.Ingredient;
 import tacos.data.IngredientRepository;
 
 @RestController
@@ -24,6 +22,16 @@ public class IngredientController {
       log.info(optIngre.toString());
     } else {
       log.error("없는 재료 일련번호: " + sn);
+    }
+  }
+
+  @GetMapping("/ingredient")
+  public Ingredient getIngredientByCode(@RequestParam String code) {
+    var optIngre = repository.findByCode(code);
+    if (optIngre.isPresent()) {
+      return optIngre.get();
+    } else {
+      return null;
     }
   }
 }

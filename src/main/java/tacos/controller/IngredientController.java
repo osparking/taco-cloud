@@ -2,11 +2,14 @@ package tacos.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.web.bind.annotation.*;
-
-import lombok.extern.slf4j.Slf4j;
 import tacos.Ingredient;
 import tacos.data.IngredientRepository;
+
+import java.security.Principal;
 
 @RestController
 @RequestMapping(path="/api/ingredients", produces="application/json")
@@ -27,13 +30,16 @@ public class IngredientController {
 
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
+  @PreAuthorize("hasRole('ADMIN')")
   public Ingredient saveIngredient(@RequestBody Ingredient ingredient) {
     return repository.save(ingredient);
   }
 
   @DeleteMapping("/{id}")
   @ResponseStatus(HttpStatus.NO_CONTENT)
-  public void deleteIngredient(@PathVariable("id") Long ingredientId) {
+  @PreAuthorize("hasRole('ADMIN')")
+  public void deleteIngredient(@PathVariable("id") Long ingredientId,
+                               Authentication authentication, Principal principal) {
     repository.deleteById(ingredientId);
   }
 

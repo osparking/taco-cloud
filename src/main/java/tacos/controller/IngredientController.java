@@ -37,17 +37,7 @@ public class IngredientController {
     repository.deleteById(ingredientId);
   }
 
-  @GetMapping("/ingredient/{sn}")
-  public void logFlto(@PathVariable String sn) {
-    var optIngre = repository.findById(Short.valueOf(sn));
-    if (optIngre.isPresent()) {
-      log.info(optIngre.toString());
-    } else {
-      log.error("없는 재료 일련번호: " + sn);
-    }
-  }
-
-  @GetMapping("/ingredient")
+  @GetMapping("/code")
   public Ingredient getIngredientByCode(@RequestParam String code) {
     var optIngre = repository.findByCode(code);
     if (optIngre.isPresent()) {

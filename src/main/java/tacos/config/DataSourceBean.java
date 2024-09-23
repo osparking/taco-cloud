@@ -68,7 +68,7 @@ public class DataSourceBean {
       taco1.setCheckedWrapId(ing1.getId());
       taco1.setName("고기애호가");
       taco1.setIncludedIngredients(Arrays.asList(
-              ing1, ing3, ing4, ing10, ing9, ing7));
+              ing1, ing3, ing10, ing9, ing7));
       tacoCrudRepo.save(taco1);
 
       Taco taco2 = new Taco();

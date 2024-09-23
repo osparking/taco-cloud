@@ -9,8 +9,8 @@ import tacos.Ingredient;
 import tacos.data.IngredientRepository;
 
 @RestController
-@Slf4j
-@RequestMapping
+@RequestMapping(path="/api/ingredients", produces="application/json")
+@CrossOrigin(origins="http://localhost:8080")
 public class IngredientController {
 
   private IngredientRepository repository;

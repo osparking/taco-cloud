@@ -7,7 +7,7 @@ import tacos.Ingredient;
 import java.util.Optional;
 
 public interface IngredientRepository
-    extends CrudRepository<Ingredient, Short> {
+    extends CrudRepository<Ingredient, Long> {
   Ingredient findByName(String name);
   Optional<Ingredient> findByCode(String code);
 }

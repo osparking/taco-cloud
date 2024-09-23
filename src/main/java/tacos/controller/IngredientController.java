@@ -12,8 +12,17 @@ import tacos.data.IngredientRepository;
 @RequestMapping
 public class IngredientController {
 
+  private IngredientRepository repository;
+
   @Autowired
-  IngredientRepository repository;
+  public IngredientController(IngredientRepository repository) {
+    this.repository = repository;
+  }
+
+  @GetMapping
+  public Iterable<Ingredient> allIngredients() {
+    return repository.findAll();
+  }
 
   @GetMapping("/ingredient/{sn}")
   public void logFlto(@PathVariable String sn) {

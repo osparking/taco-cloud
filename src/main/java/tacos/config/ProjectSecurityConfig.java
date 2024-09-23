@@ -2,6 +2,7 @@ package tacos.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
@@ -26,6 +27,8 @@ public class ProjectSecurityConfig {
         authz
           .requestMatchers("/design", "/orders/**").authenticated()
           .requestMatchers("/api/orders/**").authenticated()
+          .requestMatchers(HttpMethod.POST, "/api/ingredients").hasRole("ADMIN")
+          .requestMatchers(HttpMethod.DELETE, "/api/ingredients/**").hasRole("ADMIN")
           .requestMatchers("/", "/**").permitAll());
 
     http.formLogin(foLoCfgr -> foLoCfgr.loginPage("/login")

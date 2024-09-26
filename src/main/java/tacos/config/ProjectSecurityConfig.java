@@ -28,6 +28,10 @@ public class ProjectSecurityConfig {
           .requestMatchers("/design", "/orders/**").authenticated()
           .requestMatchers("/api/orders/**").authenticated()
           .requestMatchers(HttpMethod.POST, "/api/ingredients").hasRole("ADMIN")
+          .requestMatchers(HttpMethod.POST, "/api/ingredients")
+            .hasAuthority("SCOPE_writeIngredients")
+          .requestMatchers(HttpMethod.DELETE, "/api/ingredients/**")
+            .hasAuthority("SCOPE_deleteIngredients")
           .requestMatchers(HttpMethod.DELETE, "/api/ingredients/**").hasRole("ADMIN")
           .requestMatchers("/", "/**").permitAll());
 

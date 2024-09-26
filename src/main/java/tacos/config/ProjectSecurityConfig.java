@@ -44,6 +44,8 @@ public class ProjectSecurityConfig {
     http.logout(loc -> loc.logoutSuccessUrl("/login?logout=true"));
 
     http.httpBasic(Customizer.withDefaults());
+
+    http.oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()));
     
     return http.build();
   }

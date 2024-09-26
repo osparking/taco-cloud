@@ -37,6 +37,10 @@ public class TacoUser implements UserDetails {
   @ToString.Exclude
   private int orderCount;
 
+  @Transient
+  private List<GrantedAuthority> authorities =
+          Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
+
   public int getOrderCount() {
     return tacoOrders.size();
   }
@@ -44,9 +48,15 @@ public class TacoUser implements UserDetails {
   @OneToMany(mappedBy = "tacoUser")
   private List<TacoOrder> tacoOrders;
 
-  @Override
-  public Collection<? extends GrantedAuthority> getAuthorities() {
-    return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
+  public TacoUser(String username, String password, String authority) {
+    this.username = username;
+    this.password = password;
+    this.custName = username;
+    this.custZip = username;
+    this.roadAddr = username;
+    this.detailAddr = username;
+    this.phoneNumber = username;
+    this.authorities = Arrays.asList(new SimpleGrantedAuthority(authority));
   }
 
   @Override

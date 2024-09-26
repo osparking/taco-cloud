@@ -27,23 +27,23 @@ public class ProjectSecurityConfig {
         authz
           .requestMatchers("/design", "/orders/**").authenticated()
           .requestMatchers("/api/orders/**").authenticated()
-          .requestMatchers(HttpMethod.POST, "/api/ingredients").hasRole("ADMIN")
+//          .requestMatchers(HttpMethod.POST, "/api/ingredients").hasRole("ADMIN")
           .requestMatchers(HttpMethod.POST, "/api/ingredients")
             .hasAuthority("SCOPE_writeIngredients")
           .requestMatchers(HttpMethod.DELETE, "/api/ingredients/**")
             .hasAuthority("SCOPE_deleteIngredients")
-          .requestMatchers(HttpMethod.DELETE, "/api/ingredients/**").hasRole("ADMIN")
+//          .requestMatchers(HttpMethod.DELETE, "/api/ingredients/**").hasRole("ADMIN")
           .requestMatchers("/", "/**").permitAll());
 
-    http.formLogin(foLoCfgr -> foLoCfgr.loginPage("/login")
-        .defaultSuccessUrl("/design", true));
+//    http.formLogin(foLoCfgr -> foLoCfgr.loginPage("/login")
+//        .defaultSuccessUrl("/design", true));
     
-    http.oauth2Login(ht -> ht.loginPage("/login")
-        .defaultSuccessUrl("/design", true));
+//    http.oauth2Login(ht -> ht.loginPage("/login")
+//        .defaultSuccessUrl("/design", true));
     
-    http.logout(loc -> loc.logoutSuccessUrl("/login?logout=true"));
+//    http.logout(loc -> loc.logoutSuccessUrl("/login?logout=true"));
 
-    http.httpBasic(Customizer.withDefaults());
+//    http.httpBasic(Customizer.withDefaults());
 
     http.oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()));
     
